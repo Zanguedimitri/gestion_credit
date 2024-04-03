@@ -1,20 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
 
+</head>
+<body>
+    <div class="flex flex-col h-screen bg-gray-100">
 
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+        @include('user.section.header')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
+        <!-- Main Content -->
+        <div class="flex-1">
+            <div class="flex h-full">
+                <!-- Sidebar -->
+                @include('user.section.sidebar')
+
+                <!-- Page content -->
+                <div class="flex-1 p-10">
+                    <!-- Page content goes here -->
+
+                    <div class="p-4 sm:ml-64">
+                        <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+                            <div class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800">
+
+                                @yield('content')
+
+                            </div>
+                        </div>
+                     </div>
                 </div>
-                <h1>section utilisateur</h1>
+
             </div>
         </div>
+
+        @include('user.section.footer')
     </div>
-</x-app-layout>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+
+
+
+</body>
+</html>
+
+
