@@ -19,7 +19,7 @@
                 @include('admin.section.sidebar')
 
                 <!-- Page content -->
-                <div class="flex-1 pt-16">
+                <div class="flex-1 pt-20">
                     <!-- Page content goes here -->
                         @yield('content')
                 </div>
