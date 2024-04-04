@@ -44,6 +44,30 @@ class AdminController extends Controller
         $user->name =$request->name;
         $user->phone =$request->phone;
         $user->save();
+        // Display an error toast with no title
+
+        toastr()->success('Profil has been saved successfully!');
+        return redirect()->back();
+    }
+
+    public function storepassword(){
+        return view('admin.password.view');
+    }
+
+    public function updatepassword(Request $request){
+        $request->validate([
+            'phone'=>'required|max:255',
+            'password'=>'required|max:255',
+        ]);
+
+        if ($request->phone !== $request->password) {
+            toastr()->error('Oops! Something went wrong!');
+        }else{
+            $user = Auth::user();
+            $user->password = \bcrypt($request->phone);
+            $user->update();
+            toastr()->success('Profil has been update successfully!');
+        }
         return redirect()->back();
     }
 }
