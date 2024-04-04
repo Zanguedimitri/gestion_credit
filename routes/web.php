@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
-
+use App\Http\Controllers\AllUserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,9 +36,16 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/admin/profil/update',[AdminController::class,'update'])->name('admin.update.profile');
     Route::post('/admin/profil/updatepassword',[AdminController::class,'updatepassword'])->name('admin.update.password');
     Route::get('/admin/profil/update',[AdminController::class,'storepassword'])->name('admin.update.store');
+
+    Route::get('/admin/all/users',[AllUserController::class,'index'])->name('admin.all.user');
+    Route::delete('/admin/all/users/{$id}',[AllUserController::class,'deleteUser'])->name('admin.delete.user');
 });
 Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/user/dashboard',[UserController::class,'index'])->name('user.dashboard');
+    Route::get('/user/profil',[UserController::class,'profil'])->name('user.profile');
+    Route::post('/user/profil/update',[UserController::class,'update'])->name('user.update.profile');
+    Route::get('/user/profil/update',[UserController::class,'storepassword'])->name('user.update.store');
+    Route::post('/user/profil/updatepassword',[UserController::class,'updatepassword'])->name('user.update.password');
 });
 
 
